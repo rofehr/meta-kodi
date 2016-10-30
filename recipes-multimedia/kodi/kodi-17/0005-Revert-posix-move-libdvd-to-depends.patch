@@ -567,7 +567,7 @@ index 00827cf..a288117 100644
  
 -$(SYSDIR)/libdvdcss-$(ARCH).so:  $(WRAPPER) $(DVDREAD_DEPS)
 -	[ -d libdvdcss ] || mkdir libdvdcss
--	cd libdvdcss; ar x $(DVDCSS_A)
+-	cd libdvdcss; $(AR) x $(DVDCSS_A)
 -	$(CC) $(SO_LDFLAGS) -Wl,-alias_list,$(WRAPPER_MACH_ALIAS) -o $@ \
 -                $(WRAPPER) $(DVDCSS_OBJS) $(BUNDLE1_O)
 -
@@ -575,16 +575,16 @@ index 00827cf..a288117 100644
 -	[ -d libdvdread ] || mkdir libdvdread
 -	[ -d libdvdnav ] || mkdir libdvdnav
 -	[ $(BUILD_DVDCSS) -eq 1 ] && { [ -d libdvdcss ] || mkdir libdvdcss; } || :
--	[ $(BUILD_DVDCSS) -eq 1 ] && { cd libdvdcss && ar x $(DVDCSS_A); } || :
--	cd libdvdnav; ar x $(DVDNAV_A)
--	cd libdvdread; ar x $(DVDREAD_A)
+-	[ $(BUILD_DVDCSS) -eq 1 ] && { cd libdvdcss && $(AR) x $(DVDCSS_A); } || :
+-	cd libdvdnav; $(AR) x $(DVDNAV_A)
+-	cd libdvdread; $(AR) x $(DVDREAD_A)
 -	$(CC) $(SO_LDFLAGS) -Wl,-alias_list,$(WRAPPER_MACH_ALIAS) -o $@ \
 -                $(WRAPPER) libdvdread/*.o libdvdnav/*.o $(DVDCSS_OBJS) $(BUNDLE1_O)
 -
 -else
 -$(SYSDIR)/libdvdcss-$(ARCH).so: $(WRAPPER) $(WRAPPER_DEF) $(DVDCSS_A)
 -	[ -d libdvdcss ] || mkdir libdvdcss
--	cd libdvdcss; ar x $(DVDCSS_A)
+-	cd libdvdcss; $(AR) x $(DVDCSS_A)
 -	$(CC) -o $@ $(SO_LDFLAGS) -Wl,--soname,$@ $(DVDCSS_OBJS) -Wl,--unresolved-symbols=ignore-all -lm \
 -        `cat $(WRAPPER_DEF)` $(WRAPPER)
 -
@@ -592,9 +592,9 @@ index 00827cf..a288117 100644
 -	[ -d libdvdread ] || mkdir libdvdread
 -	[ -d libdvdnav ] || mkdir libdvdnav
 -	[ $(BUILD_DVDCSS) -eq 1 ] && { [ -d libdvdcss ] || mkdir libdvdcss; } || :
--	[ $(BUILD_DVDCSS) -eq 1 ] && { cd libdvdcss && ar x $(DVDCSS_A); } || :
--	cd libdvdnav; ar x $(DVDNAV_A)
--	cd libdvdread; ar x $(DVDREAD_A)
+-	[ $(BUILD_DVDCSS) -eq 1 ] && { cd libdvdcss && $(AR) x $(DVDCSS_A); } || :
+-	cd libdvdnav; $(AR) x $(DVDNAV_A)
+-	cd libdvdread; $(AR) x $(DVDREAD_A)
 -	$(CC) -o $@ $(SO_LDFLAGS) -Wl,--soname,$@ libdvdread/*.o libdvdnav/*.o $(DVDCSS_OBJS) -lm -Wl,--unresolved-symbols=ignore-all \
 -                `cat  $(WRAPPER_DEF)` $(WRAPPER)
 -endif
