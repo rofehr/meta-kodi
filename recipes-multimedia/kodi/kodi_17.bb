@@ -64,7 +64,7 @@ DEPENDS = " \
             zlib \
           "
 
-SRCREV = "6d4d9bfc804f9912b61673392b39dd3b8e1844d4"
+SRCREV = "8fe046c5f689e8cf1daa57c3c7dec313915492df"
 
 PV = "17+gitr${SRCPV}"
 SRC_URI = "git://github.com/xbmc/xbmc.git;branch=master \
@@ -89,12 +89,15 @@ ACCEL ?= ""
 ACCEL_x86 = "vaapi vdpau"
 ACCEL_x86-64 = "vaapi vdpau"
 
-PACKAGECONFIG ??= "${ACCEL} opengl"
+PACKAGECONFIG ??= "${ACCEL} opengl x11"
 PACKAGECONFIG[opengl] = "--enable-gl,--enable-gles,glew"
 PACKAGECONFIG[openglesv2] = "--enable-gles,--enable-gl,"
 PACKAGECONFIG[vaapi] = "--enable-vaapi,--disable-vaapi,libva"
 PACKAGECONFIG[vdpau] = "--enable-vdpau,--disable-vdpau,libvdpau"
 PACKAGECONFIG[mysql] = "--enable-mysql,--disable-mysql,mysql5"
+PACKAGECONFIG[x11] = "--enable-x11,--disable-x11,libxinerama libxmu libxrandr libxtst"
+PACKAGECONFIG[pulseaudio] = "--enable-pulse,--disable-pulse,pulseaudio"
+PACKAGECONFIG[lcms] = "--enable-lcms2,--disable-lcms2,lcms"
 
 EXTRA_OECONF = " \
     --enable-libusb \
