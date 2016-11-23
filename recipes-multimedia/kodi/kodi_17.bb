@@ -64,13 +64,14 @@ DEPENDS = " \
             zlib \
           "
 
-SRCREV = "8fe046c5f689e8cf1daa57c3c7dec313915492df"
+SRCREV = "6120ee918509f85470f57c6aac554e844677954f"
 
 PV = "17+gitr${SRCPV}"
 SRC_URI = "git://github.com/xbmc/xbmc.git;branch=master \
            file://0002-configure-don-t-try-to-run-stuff-to-find-tinyxml.patch \
            file://0004-add-support-to-read-frequency-output-if-using-intel-.patch \
            file://0005-Revert-posix-move-libdvd-to-depends.patch \
+           file://0001-estuary-2nd-edition.patch \
 "
 
 inherit autotools-brokensep gettext python-dir
@@ -156,6 +157,7 @@ FILES_${PN}-dbg += "${libdir}/kodi/.debug ${libdir}/kodi/*/.debug ${libdir}/kodi
 # OpenGL builds need glxinfo, that's in mesa-demos
 RRECOMMENDS_${PN}_append = " libcec \
                              python \
+                             python-ctypes \
                              python-lang \
                              python-re \
                              python-netclient \
