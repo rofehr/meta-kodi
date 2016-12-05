@@ -64,14 +64,16 @@ DEPENDS = " \
             zlib \
           "
 
-SRCREV = "6120ee918509f85470f57c6aac554e844677954f"
+SRCREV = "1dd86137b04008f30ac5879c4966a2c06a4f4b85"
+
+# 'patch' doesn't support binary diffs
+PATCHTOOL = "git"
 
 PV = "17+gitr${SRCPV}"
-SRC_URI = "git://github.com/xbmc/xbmc.git;branch=master \
+SRC_URI = "git://github.com/xbmc/xbmc.git;branch=Krypton \
            file://0002-configure-don-t-try-to-run-stuff-to-find-tinyxml.patch \
            file://0004-add-support-to-read-frequency-output-if-using-intel-.patch \
            file://0005-Revert-posix-move-libdvd-to-depends.patch \
-           file://0001-estuary-2nd-edition.patch \
 "
 
 inherit autotools-brokensep gettext python-dir
@@ -168,6 +170,7 @@ RRECOMMENDS_${PN}_append = " libcec \
                              python-shell \
                              python-sqlite3 \
                              python-compression \
+                             python-xmlrpc \
                              libcurl \
                              xdpyinfo \
                              xrandr \
